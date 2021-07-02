@@ -1,0 +1,29 @@
+<%= form_with model: profile do |form| %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    <br><br>
+    <%= form.label :age %>
+    <%= form.number_field :age, min:0, max:120 %>
+    <br><br>
+    <%= form.label :bio %>
+    <%= form.text_area :bio, autofocus: true, placeholder: 'Tell us about yourself' %>
+    <br><br>
+    <%= form.label :addresses %>
+    <ul>
+    <%= form.fields_for :addresses do |addresses_form| %>
+        <li>
+            <%= addresses_form.label :street %>
+            <%= addresses_form.text_field :street %>
+            <%= addresses_form.label :city %>
+            <%= addresses_form.text_field :city %>
+            <%= addresses_form.label :state %>
+            <%= addresses_form.text_field :state %>
+            <%= addresses_form.label :postcode %>
+            <%= addresses_form.text_field :postcode %>
+        </li>
+        <br>
+    <% end %>
+    </ul>
+    <%= form.submit %>
+<% end %>
+    

@@ -10,7 +10,7 @@ class ProfilesController < ApplicationController
 
     def new
         @profile = Profile.new
-
+        2.times { @profile.addresses.build }
     end
 
     def create
@@ -25,10 +25,15 @@ class ProfilesController < ApplicationController
 
     def update
         #finsih logic for updating the record
+        @profile.update(profile_params)
+        redirect_to profiles_path
     end
 
     def destroy
         #finish logic for deleting the record
+        @profile.addresses.destroy
+        @profile.destroy
+        redirect_to profiles_path
     end
 
     private
@@ -39,6 +44,7 @@ class ProfilesController < ApplicationController
     end
 
     def profile_params
-        params.require(:profile).permit(:name, :age, :bio)
+        params.require(:profile).permit(:name, :age, :bio, addresses_attributes: [:street, :city, :state, :postcode, :profile_id])
+        # .merge(profile_id: current_profile.id)
     end
 end

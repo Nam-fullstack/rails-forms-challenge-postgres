@@ -1,1 +1,17 @@
 <h1> List Profiles </h1>
+
+<section class="cards-container">
+    <% @profiles.each do |profile| %>
+    <div class="card">
+        <h2><%= profile.name %></h2>
+        <h3>Age: <%= profile.age %></h3>
+        <p><%= profile.bio %></p>
+        <h4>Addresses:</h4>
+        <% profile.addresses.each do |address| %>
+            <%= "#{address.street}, #{address.city}, #{address.state}, #{address.postcode}" %>
+        <% end %>
+        <%= link_to "Full Details", profile_path(profile.id) %>
+    </div>
+    <% end %>
+</section>
+<%= link_to "Add a New Profile", new_profile_path %>

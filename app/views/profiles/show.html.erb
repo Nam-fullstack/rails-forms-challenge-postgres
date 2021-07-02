@@ -1,7 +1,16 @@
-<h1><%= @profile.name %></h1>
+<h2>Name: <%= @profile.name %></h2>
+<h2>Age: <%= @profile.age %></h2>
+<h2>Bio: </h2>
+<p><%= @profile.bio %>
 
 <h2>Addresses</h2>
-<%= @profile.addresses.each do |address| %>
-  <%= "#{address.street}, #{address.city}, #{address.state}, #{address.postcode}"  %>
+<% @profile.addresses.each do |address| %>
+  <%= "#{address.street}, #{address.city}, #{address.state}, #{address.postcode}" %>
+  <br>
 <% end %>
+
+<br>
+<%= button_to "Delete Profile", {action: "destroy", id: @profile.id}, {method: :delete, class: "danger button", data: {confirm: "Are you sure you want to delete this profile?"}} %>
+<%= button_to "Edit Profile", {action: "edit", id: @profile.id}, {method: :get, class: "warning button"} %>
+<%= link_to "Back", profiles_path %>
 
