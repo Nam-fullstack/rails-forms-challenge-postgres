@@ -31,7 +31,6 @@ class ProfilesController < ApplicationController
 
     def destroy
         #finish logic for deleting the record
-        @profile.addresses.destroy
         @profile.destroy
         redirect_to profiles_path
     end
@@ -44,7 +43,7 @@ class ProfilesController < ApplicationController
     end
 
     def profile_params
-        params.require(:profile).permit(:name, :age, :bio, addresses_attributes: [:street, :city, :state, :postcode, :profile_id])
+        params.require(:profile).permit(:name, :age, :bio, addresses_attributes: [:street, :city, :state, :postcode])
         # .merge(profile_id: current_profile.id)
     end
 end

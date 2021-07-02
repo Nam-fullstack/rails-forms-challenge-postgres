@@ -3,12 +3,12 @@
     <%= form.text_field :name %>
     <br><br>
     <%= form.label :age %>
-    <%= form.number_field :age, min:0, max:120 %>
+    <%= form.number_field :age, min:1 %>
     <br><br>
     <%= form.label :bio %>
-    <%= form.text_area :bio, autofocus: true, placeholder: 'Tell us about yourself' %>
+    <%= form.text_area :bio, size: "30x4", autofocus: true, placeholder: 'Tell us about yourself' %>
     <br><br>
-    <%= form.label :addresses %>
+    <p>Addresses:</p>
     <ul>
     <%= form.fields_for :addresses do |addresses_form| %>
         <li>
